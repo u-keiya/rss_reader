@@ -69,3 +69,28 @@
 後にほかの言語を用いてGUIなどをアップデートする可能性あり
 
 ---
+
+## 5. ファイル構成（案）
+```
+rss_reader/
+│
+├── main.py                 # アプリのエントリーポイント
+├── config/
+│   └── settings.py         # 設定管理用（更新間隔、APIキーなど）
+├── data/
+│   └── storage.json        # ユーザーデータ（フィードやお気に入りの管理）
+├── ui/
+│   ├── main_window.py      # メインウィンドウのUI（PyQtの初期化）
+│   ├── sidebar.py          # サイドバーのUIコンポーネント
+│   └── article_card.py     # 記事のカード型UI
+├── feeds/
+│   ├── feed_manager.py     # フィードの管理（登録・削除・取得）
+│   └── rss_fetcher.py      # RSSの取得・更新処理
+├── articles/
+│   ├── article_manager.py  # 記事の管理（未読・既読・お気に入り）
+│   └── article_filter.py   # 記事のフィルタリング・ソート処理
+├── utils/
+│   ├── logger.py           # ログ出力処理
+│   └── helpers.py          # 汎用関数
+└── requirements.txt        # 依存ライブラリ（PyQtなど）
+```
