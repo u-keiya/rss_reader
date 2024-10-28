@@ -1,14 +1,14 @@
-from PyQt5.QtWidgets import QMainWindow, QVBoxLayout, QWidget
+from PyQt5.QtWidgets import QMainWindow, QHBoxLayout, QVBoxLayout, QWidget
 from ui.sidebar import Sidebar
 from ui.article_card import ArticleCard
 
 class MainWindow(QMainWindow):
-    def __init__(self, feeds, articles):
+    def __init__(self, feeds=None, articles=None):
         super().__init__()
         self.setWindowTitle("RSS Reader")
         self.setGeometry(100, 100, 800, 600)
 
-        layout = QVBoxLayout()
+        layout = QHBoxLayout()
 
         # サイドバーの初期化とシグナル接続
         self.sidebar = Sidebar(feeds)

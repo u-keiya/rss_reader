@@ -1,5 +1,6 @@
 import threading
 import time
+import feedparser
 
 class RSSFetcher:
     def __init__(self, feed_manager, interval=300):
@@ -13,3 +14,10 @@ class RSSFetcher:
         while True:
             self.feed_manager.fetch_articles()
             time.sleep(self.interval)
+    
+    def fetch_articles(self):
+        articles = []
+        for url in self.feed_manager.load_feeds():
+            feed = feedparser.parse(url)
+            articles.extend(feed.entries)
+        return articles
