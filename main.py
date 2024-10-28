@@ -10,14 +10,12 @@ def main():
 
     # フィードと記事の管理
     feed_manager = FeedManager()
-    feeds = feed_manager.load_feeds()
 
     # フィードが登録されている場合、記事を取得
     rss_fetcher = RSSFetcher(feed_manager)
-    articles = rss_fetcher.fetch_articles()
 
     # メインウィンドウを初期化し、表示
-    window = MainWindow(feeds, articles)
+    window = MainWindow(feed_manager, rss_fetcher)
     window.show()
 
     # アプリケーションの実行と終了処理

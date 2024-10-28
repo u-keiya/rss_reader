@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import (
-    QWidget, QVBoxLayout, QListWidget, QListWidgetItem, QPushButton, QLabel, QHBoxLayout
+    QWidget, QVBoxLayout, QListWidget, QListWidgetItem, QPushButton, QLabel, QHBoxLayout, QInputDialog
 )
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import QSize, Qt, pyqtSignal
@@ -9,6 +9,7 @@ class Sidebar(QWidget):
     feed_selected = pyqtSignal(str)  # フィード選択時
     show_all_feeds = pyqtSignal()    # 全フィード表示
     show_favorites = pyqtSignal()    # お気に入り記事表示
+    feed_added = pyqtSignal(str)     # 新しいRSSフィードの追加
 
     def __init__(self, feeds, parent=None):
         super().__init__(parent)
@@ -33,6 +34,10 @@ class Sidebar(QWidget):
         favorites_button = QPushButton("Favorites")
         favorites_button.clicked.connect(self.show_favorites.emit)  # シグナル送信
 
+        # RSS追加ボタン
+        add_feed_button = QPushButton("Add RSS")
+        add_feed_button.clicked.connect(self.add_feed_dialog)
+
         # 3. 設定と検索のアイコンボタン
         icon_layout = QHBoxLayout()
         settings_button = self.create_icon_button("Setting", "icons/settings.png")
@@ -46,6 +51,7 @@ class Sidebar(QWidget):
         layout.addWidget(self.feed_list)
         layout.addWidget(all_feeds_button)
         layout.addWidget(favorites_button)
+        layout.addWidget(add_feed_button)
         layout.addLayout(icon_layout)
 
         self.setLayout(layout)
@@ -63,3 +69,9 @@ class Sidebar(QWidget):
         """クリックされたフィード名をシグナルで送信"""
         feed_name = item.data(Qt.UserRole)
         self.feed_selected.emit(feed_name)
+
+    def add_feed_dialog(self):
+        """RSSフィードのURLを入力するダイアログを表示"""
+        url, ok = QInputDialog.getText(self, "Add RSS", "URL:")
+        if ok and url:
+            self.feed_added.emit(url)  # シグナルを送信

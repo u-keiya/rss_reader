@@ -4,8 +4,15 @@ from ui.sidebar import Sidebar
 from ui.article_card import ArticleCard
 
 class MainWindow(QMainWindow):
-    def __init__(self, feeds=None, articles=None):
+    def __init__(self, feed_manager, rss_fetcher):
         super().__init__()
+
+        self.feed_manager = feed_manager
+        self.rss_fetcher = rss_fetcher
+
+        feeds = self.feed_manager.load_feeds()
+        articles = self.rss_fetcher.fetch_articles()
+
         self.setWindowTitle("RSS Reader")
         self.setGeometry(100, 100, 800, 600)
 
@@ -19,6 +26,7 @@ class MainWindow(QMainWindow):
         self.sidebar.feed_selected.connect(self.display_feed_articles)
         self.sidebar.show_all_feeds.connect(self.display_all_unread_articles)
         self.sidebar.show_favorites.connect(self.display_favorite_articles)
+        self.sidebar.feed_added.connect(self.add_new_feed)
 
         # 記事エリアの設定
         self.article_container = QWidget()
@@ -72,3 +80,7 @@ class MainWindow(QMainWindow):
             widget = self.article_layout.itemAt(i).widget()
             if widget:
                 widget.setParent(None)
+
+    def add_new_feed(self, url):
+        """新しいRSSフィードを追加"""
+        self.feed_manager.add_feed(url)

@@ -3,6 +3,7 @@ import json
 class FeedManager:
     def __init__(self, storage_file="data/storage.json"):
         self.storage_file = storage_file
+        self.feeds = self.load_feeds()
 
     def load_feeds(self):
         with open(self.storage_file, "r") as f:
