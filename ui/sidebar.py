@@ -27,22 +27,22 @@ class Sidebar(QWidget):
         self.feed_list.itemClicked.connect(self.on_feed_clicked)
 
         # 2. 全フィード表示とお気に入り表示ボタン
-        all_feeds_button = QPushButton("全フィード表示")
+        all_feeds_button = QPushButton("All Feeds")
         all_feeds_button.clicked.connect(self.show_all_feeds.emit)  # シグナル送信
 
-        favorites_button = QPushButton("お気に入り記事表示")
+        favorites_button = QPushButton("Favorites")
         favorites_button.clicked.connect(self.show_favorites.emit)  # シグナル送信
 
         # 3. 設定と検索のアイコンボタン
         icon_layout = QHBoxLayout()
-        settings_button = self.create_icon_button("設定", "icons/settings.png")
-        search_button = self.create_icon_button("検索", "icons/search.png")
+        settings_button = self.create_icon_button("Setting", "icons/settings.png")
+        search_button = self.create_icon_button("Search", "icons/search.png")
 
         icon_layout.addWidget(settings_button)
         icon_layout.addWidget(search_button)
 
         # メインレイアウトに要素を順番に追加
-        layout.addWidget(QLabel("フィード一覧"))
+        layout.addWidget(QLabel("Feeds"))
         layout.addWidget(self.feed_list)
         layout.addWidget(all_feeds_button)
         layout.addWidget(favorites_button)
