@@ -1,14 +1,1 @@
-[
-    {
-        "id": "feed_1",
-        "name": "Python News",
-        "url": "https://example.com/python-news.xml",
-        "unread_count": 10
-    },
-    {
-        "id": "feed_2",
-        "name": "Tech Blog",
-        "url": "https://example.com/tech-blog.xml",
-        "unread_count": 5
-    }
-]
+[{"name": "Python News", "url": "https://example.com/python-news.xml"}, {"name": "Tech Blog", "url": "https://example.com/tech-blog.xml"}, {"name": "ITmedia", "url": "https://rss.itmedia.co.jp/rss/2.0/aiplus.xml"}]

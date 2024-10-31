@@ -17,7 +17,7 @@ class RSSFetcher:
     
     def fetch_articles(self):
         articles = []
-        for url in self.feed_manager.load_feeds():
-            feed = feedparser.parse(url)
+        for feed in self.feed_manager.load_feeds():
+            feed = feedparser.parse(feed["url"])
             articles.extend(feed.entries)
         return articles

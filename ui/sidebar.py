@@ -20,7 +20,7 @@ class Sidebar(QWidget):
         # 1. フィード一覧の表示（未読記事数付き）
         self.feed_list = QListWidget()
         for feed in feeds:
-            item = QListWidgetItem(f"{feed['name']} ({feed['unread_count']})")
+            item = QListWidgetItem(f"{feed['name']}")# ({feed['unread_count']})")
             item.setData(Qt.UserRole, feed['name'])  # フィード名をデータとして保持
             self.feed_list.addItem(item)
 
@@ -28,26 +28,26 @@ class Sidebar(QWidget):
         self.feed_list.itemClicked.connect(self.on_feed_clicked)
 
         # 2. 全フィード表示とお気に入り表示ボタン
-        all_feeds_button = QPushButton("All Feeds")
+        all_feeds_button = QPushButton("全てのフィード")
         all_feeds_button.clicked.connect(self.show_all_feeds.emit)  # シグナル送信
 
-        favorites_button = QPushButton("Favorites")
+        favorites_button = QPushButton("お気に入り")
         favorites_button.clicked.connect(self.show_favorites.emit)  # シグナル送信
 
         # RSS追加ボタン
-        add_feed_button = QPushButton("Add RSS")
+        add_feed_button = QPushButton("RSSの追加")
         add_feed_button.clicked.connect(self.add_feed_dialog)
 
         # 3. 設定と検索のアイコンボタン
         icon_layout = QHBoxLayout()
-        settings_button = self.create_icon_button("Setting", "/home/kunon/apps/rss_reader/ui/icons/settings.png")
-        search_button = self.create_icon_button("Search", "/home/kunon/apps/rss_reader/ui/icons/search.png")
+        settings_button = self.create_icon_button("設定", "/home/kunon/apps/rss_reader/ui/icons/settings.png")
+        search_button = self.create_icon_button("検索", "/home/kunon/apps/rss_reader/ui/icons/search.png")
 
         icon_layout.addWidget(settings_button)
         icon_layout.addWidget(search_button)
 
         # メインレイアウトに要素を順番に追加
-        layout.addWidget(QLabel("Feeds"))
+        layout.addWidget(QLabel("フィード"))
         layout.addWidget(self.feed_list)
         layout.addWidget(all_feeds_button)
         layout.addWidget(favorites_button)
