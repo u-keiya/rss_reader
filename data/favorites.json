@@ -1,0 +1,10 @@
+[
+    {
+        "id": "article_2",
+        "feed_id": "feed_2",
+        "title": "Tech Trends 2024",
+        "link": "https://example.com/article2",
+        "published": "2024-10-02",
+        "summary": "An overview of tech trends..."
+    }
+]

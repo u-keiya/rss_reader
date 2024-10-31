@@ -40,8 +40,8 @@ class Sidebar(QWidget):
 
         # 3. 設定と検索のアイコンボタン
         icon_layout = QHBoxLayout()
-        settings_button = self.create_icon_button("Setting", "icons/settings.png")
-        search_button = self.create_icon_button("Search", "icons/search.png")
+        settings_button = self.create_icon_button("Setting", "/home/kunon/apps/rss_reader/ui/icons/settings.png")
+        search_button = self.create_icon_button("Search", "/home/kunon/apps/rss_reader/ui/icons/search.png")
 
         icon_layout.addWidget(settings_button)
         icon_layout.addWidget(search_button)
